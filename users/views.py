@@ -55,3 +55,4 @@ def profile(request):
 
 def score_explained(request):
     return render(request, 'scoreexplained.html', {})
+#hello, World!
