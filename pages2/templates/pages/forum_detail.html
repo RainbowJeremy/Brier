@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+<table class="table table-striped">
+<tr class="table-primary">
+  <th>Forum Information</th>
+</tr>
+
+{% for k, v in object.get_field_values.items %}
+<tr>
+  <td>
+  {{ k }}
+  </td>
+
+  <td>
+  {{ v }}
+  </td>
+</tr>
+{% endfor %}
+</table>
+
+
+<a href="{% url 'pages:forum' object.slug %}"><button type="button" name="button">View</button></a>
+<a href="{% url 'pages:forum_update' object.slug %}"><button type="button" name="button">Edit</button></a>
+{% endblock %}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJRRFSH');</script>
+<!-- End Google Tag Manager -->
+<!-- Hotjar Tracking Code for www.brierpredict.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2318488,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Get real world information from the best pundits with proven track records">    
+<link rel="icon" href="{% static 'images/trial.png' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pie.css' %}" />
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>-->
+    <script type="text/javascript" src="{% static 'js/piechart.js' %}"></script>
+<!-- add Poppins font
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  -->
+    <title>Brier</title>
+</head>
+
+
+<body class="bg-light">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJRRFSH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <nav  class="navbar navbar-expand-lg" >
+      <div class="brand-div">
+        <div class="brand brand-logo"><img src="{% static 'images/logo.png' %}" width="40rem" height="40rem"></div>
+        <h3><a class="brand brand-name navbar-brand mr-auto" href="{% url 'pages:home' %}">Brier.</a></h3>
+      </div>
+
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active  mr-4 ">
+        <a class="nav-link mid-link" href="{% url 'pages:estimate-list' %}"><b>TRACKED</b><span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item   mr-4">
+        <a class="nav-link mid-link" href="{% url 'pages:create-subforum'%}"><b>CREATE</b></a>
+      </li>
+
+
+    <li>
+      <form class="searchbar form-inline my-2" action="{% url 'pages:searchbar' %}" method="get">
+        <input class=" mr-sm-2" name="search" type="search" placeholder="Search..." aria-label="Search">
+        <button class="btn btn-outline-xiketic my-2 mr-4 my-sm-0" type="submit">
+          <img class="search-img" src="{% static 'images/search.jpg' %}" width="23rem" height="23rem">
+        </button>
+      </form>
+    </li>
+
+
+<!--    <li class="nav-item   mr-4">
+      <a class="nav-link mid-link" href="{% url 'pages:create-subforum'%}">Make a Subforum</a>
+    </li> -->
+</ul>
+<ul class="navbar-nav mr-auto">
+    {% if user.is_authenticated %}
+    <li class="nav-profile active  ">
+      <a class="nav-link profile-link" href="{% url 'users:profile' %}">
+        <img class="rounded-circle card-img" style="width: 25px; margin-bottom:4px; border: 2px solid #000;" src="{{ user.profile.image.url }}">
+        <span class="question-author"><u>{{user.username}}</u></span>
+      </a>
+    </li>
+    <li class="nav-link"><div class="nav-score"><a class="nav-link score-link" href="{% url 'users:score-explained' %}"> Score: {{ user.profile.score}}</a>
+     <div class="tooltiptext">What is this?</div></div></li>
+    <li class="nav-item  "><a class="nav-link admin-link" href="{% url 'users:logout' %}"><b>LOGOUT</b></a></li>
+
+
+    {% else %}
+    <li class="nav-item  "><a class="nav-link admin-link" href="{% url 'users:register' %}"><b>REGISTER</b></a></li>
+    <li class="nav-item  "><a class="nav-link admin-link" href="{% url 'users:login' %}"><b>LOGIN</b></a></li>
+
+    {% endif %}
+    {% if user.is_superuser %}
+    <li class="nav-item">
+      <a class="nav-link admin-link" href="http://127.0.0.1:8000/admin"><b>ADMIN</b></a></li>
+    {% endif %}
+    </ul>
+  </div>
+</nav>
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 bg-light">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+
+      {% endfor %}
+      {% endif %}
+
+      {% block body %}
+      {% endblock %}
+
+  </div>
+
+<br>
+          <div class="content-section">
+            <br>
+            {% if user.is_authenticated %}
+
+            <h4> Score: {{ user.profile.score}}</h4>
+            {% endif %}
+            <p class='text-muted sidebar-heading'>Make predictions to view the predictions of others.</p>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Why and How</li>
+                <li class="list-group-item list-group-item-light"><a href="https://fs.blog/2015/12/ten-commandments-for-superforecasters/">Improve your Predictions</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://augur.net/">Augur Prediction Market</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://www.betfair.com/exchange/plus/">BetFair Prediction Market</a></li>
+              </ul>
+
+          </div>
+        </div>
+  </div>
+</main>
+
+
+<div class="container-fluid pb-0 mb-0 bg-dark justify-content-center text-light ">
+    <footer>
+        <div class="row my-5 justify-content-center py-5">
+            <div class="col-11">
+                <div class="row ">
+                    <div class="col-xl-8 col-md-4 col-sm-4 col-12 my-auto mx-auto a">
+                        <h3 class="text-muted mb-md-0 mb-5 bold-text">Brier.</h3>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                        <h6 class="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>
+                        <p class="mb-1">605, RATAN ICON BUILDING</p>
+                        <p>SEAWOODS SECTOR</p>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-5 order-sm-1 order-3 align-self-end">
+                        <p class="social text-muted mb-0 pb-0 bold-text"> <span class="mx-2"><i class="fa fa-facebook" aria-hidden="true"></i></span> <span class="mx-2"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span> <span class="mx-2"><i class="fa fa-twitter" aria-hidden="true"></i></span> <span class="mx-2"><i class="fa fa-instagram" aria-hidden="true"></i></span> </p><small class="rights"><span>&#174;</span> Brier All Rights Reserved.</small>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end ">
+                        <ul>
+                        <li><a href="https://icons8.com/icon/9203/bear-footprint">Bear Footprint icon by Icons8</a></li>
+                        <li><a href="https://icons8.com/icon/93328/get-quote">Get Quote icon by Icons8</a></li>
+                        <li><a href="https://icons8.com/icon/95347/high-importance">High Importance icon by Icons8</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 ">
+                        <h6 class="text-muted bold-text"><b>FINTAN PARSONS</b></h6><small><span><i class="fa fa-envelope" aria-hidden="true"></i></span> fintanjparsons@gmail.com</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+
+</html>

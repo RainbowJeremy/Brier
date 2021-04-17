@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+<h1> Create a New Forum</h1>
+<form method='POST'>
+  {% csrf_token %}
+  {{form|crispy}}
+  <input type='submit' value='Submit'>
+</form>
+<br><br><br><br>
+<!--
+<h4>Notes on moderation</h4>
+<p class ='forum-form-copy'>A moderator cannot remove predictions</p>
+<p class ='forum-form-copy'> A moderator can only remove <b>questions</b> on these grounds </p>
+<ol class ='forum-form-copy'>
+  <li>Questions irrelevant to topic  of the forum</li>
+  <li>Repeat questions</li>
+  <li>Invalid (unfalsifiable) questions</li>
+</ol>
+-->
+{% endblock %}

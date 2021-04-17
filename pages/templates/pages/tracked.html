@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+{% for obj in object_list %}
+<div class="center">
+
+  <div class="property-card gridder" id="property-card">
+      <div class="property-image">
+        <div class="property-image-title">
+
+          <a href="{% url 'pages:forum' obj.forum %}">
+          <h5 class="p-topic button">p/{{ obj.forum }}</h5>
+          </a>
+          </div>
+          <div class="property-social-icons d-flex flex-row-reverse">
+
+
+            <div class="p-2 report">
+              <div class="tooltiptext">Report</div>
+              <img id="{{obj.question.id}}-report-icon" src="https://img.icons8.com/material-rounded/26/000000/high-importance.png" class="icons-btm">
+            </div>
+
+
+            <div class="p-2 share"><input type="text" value="{% url 'pages:question-detail' obj.forum obj.id obj.slug %}" id="{{obj.question.id}}-share-text">
+            <div  class="tooltiptext">Share</div><img src="https://img.icons8.com/material-rounded/24/000000/quote-right.png" id="{{obj.question.id}}-share-icon" class="icons-btm"></div>
+              <script>
+                document.getElementById("{{obj.question.id}}-share-icon").onclick = function() {copyShareLink()};
+
+                function copyShareLink (){
+                var copyText = document.getElementById("{{obj.question.id}}-share-text");
+                      copyText.select();
+                      copyText.setSelectionRange(0, 99999);
+                      document.execCommand("copy");
+                      alert("Copied the text: " + copyText.value);
+                    }
+              </script>
+                {% if obj.predictors %}
+            <div class="p-2 track">
+              <div class="tooltiptext">Tracked!</div>
+              <img id="{{obj.question.id}}-track-icon" src="https://img.icons8.com/ios-filled/50/000000/bear-footprint.png" class="icons-btm">
+            </div>
+            {% endif %}
+
+
+        </div>
+      </div>
+
+
+    <div class="property-description display">
+        <div class="qd-text"> {{ obj.author }}   {{ obj.date }}  </div>
+      <h5 class="card-title">{{ obj.question }}</h5>
+      <h5 class="card-title">{{ obj.prediction }}% Chance</h5>
+      <br><br><br>
+  <a href="{% url 'pages:question-detail' obj.forum obj.id obj.slug %}">View Predictions</a>
+    </div>
+
+
+
+  </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}

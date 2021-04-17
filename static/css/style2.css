@@ -1,0 +1,867 @@
+:root {
+  --white:#FFFFFF;
+  --xiketic:#1C0F13;
+  --azure:#3185FC;
+  --max-purple:#783F8E;
+  --sheen-gold:#CBA135;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url(../fonts/Lora/Lora-VariableFont_wght.ttf);
+}
+
+html{
+  font-size:12px;
+
+}
+
+body
+{
+  background-color: #a42e2e;
+  font-family: 'Lora', serif;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+*
+{
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a
+{
+  color:inherit;
+}
+
+a:hover
+{
+  color:inherit;
+}
+
+h5
+{
+  margin:0px;
+  font-size:1.4em;
+  font-weight:700;
+}
+
+p
+{
+  font-size:12px;
+}
+
+
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+.bg-white{
+  background-color: var(--white)!important;
+}
+
+.bg-azure{
+  background-color: var(--azure)!important;
+}
+
+.bg-xiketic{
+  background-color: var(--xiketic)!important;
+}
+
+.bg-max-purple{
+  background-color: var(--max-purple)!important;
+}
+
+.bg-sheen-gold{
+  background-color: var(--sheen-gold)!important;
+}
+
+.btn-outline-xiketic {
+    color: var(--white)!important;
+    border-color: var(--white)!important;
+}
+
+.btn-outline-xiketic:hover {
+    color: var(--sheen-gold)!important;
+    background-color: var(--xiketic)!important;
+}
+
+.navbar{
+  color: var(--white);
+  background-color: black;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  display: -ms-flexbox!important;
+  display: flex!important;
+  font-size: 11px;
+}
+
+@media (min-width: 992px)
+.navbar-expand-lg {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.brand-div{
+  margin: 0rem;
+  padding: 0px;
+  width: 159px;
+}
+
+.brand{
+
+}
+
+.brand-logo{
+  display: inline-block;
+  float: left;
+  margin-top: 4px;
+}
+
+.brand-name{
+  display: inline-block;
+  float: left;
+  margin: 0rem 0.5rem;
+  font-size: 35px;
+}
+
+.navbar-nav{
+  margin-left: 5rem;
+  justify-content: space-between;
+}
+
+.searchbar{
+  margin-left:3rem;
+  margin-top: 1rem;
+}
+
+.searchbar input {
+     height: 36px;
+     width: 338px;
+     padding-left: 10px;
+}
+
+.form-inline {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -ms-flex-align: center;
+    align-items: start;
+}
+.search-img{
+  padding-top: 3px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(2em + 0.75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .05rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.nav-item{
+  border-color: white;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  margin: 0px 14px 8px 0px;
+}
+
+.nav-item:hover
+{
+  background-color: white;
+  color: black;
+}
+
+
+.nav-profile{
+  color: black;
+  background-color: white;
+  padding-left: 3px;
+  padding-right: 3px;
+  border: 2px solid var(--xiketic);
+  border-radius: 1px;
+}
+
+.mid-link{
+  margin:4px;
+}
+
+.profile-link{
+  padding: 0.75rem 2rem 0rem 3rem;
+}
+
+.score-link:hover
+{
+  text-decoration: underline;
+}
+
+.profile-link:hover
+{
+  color: #a88bd6;
+}
+
+.score-link:hover
+{
+  text-decoration: underline;
+}
+
+
+.nav-score{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.nav-score .tooltiptext {
+  visibility: hidden;
+  width: 77px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 160%;
+  left: 40%;
+  margin-left: -28px;
+}
+
+.nav-score:hover .tooltiptext {
+  visibility: visible;
+  font-size: 10px;
+}
+
+.nav-score .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+
+.admin-link
+{
+  margin-top: 3px;
+}
+
+.gridder
+{
+  display: grid;
+  grid-template-columns: 5% 1fr 1fr 1fr 1fr 1fr 5% ;
+  grid-template-rows: 15% 1fr 1fr 1.2fr 1fr 1fr 5% ;
+
+}
+
+.center
+{
+  height: 34em;
+  width: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* End Non-Essential  */
+
+.property-card
+{
+  height: 30em;
+  width: 53em;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:grid;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  position:relative;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border: 1.5px solid black;
+  border-radius:1px;
+  overflow:hidden;
+  /*
+   offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 4px 4px 4px -1px rgb(0 0 0 / 85%);
+}
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+/* Top Half of card, image. */
+
+.property-image
+{
+  height:100%;
+  width: 100%;
+  padding: 1em 0em;
+  position: absolute;
+  top:0px;
+  margin: 0rem;
+}
+
+.property-image-title
+{
+  grid-area: 1 / 2 / span 1 / span 1;
+  border-bottom: 2px solid #000;
+}
+
+.property-author
+{
+  grid-area: 1 / 3 / span 1 / span 3;
+  border-bottom: 2px solid #000;
+  padding: 0rem 1rem;
+  margin: 0rem;
+  align-content: flex-end;
+}
+
+.mid-title
+{
+  margin: 0 0;
+  position: absolute;
+  bottom: 6%;
+}
+
+
+.card-image
+{
+  display: inline-block;
+}
+
+.question-author
+{
+  display: inline-block;
+
+}
+.q-auth-text
+{
+  width: 20rem;
+  border: none;
+  padding: 15px 32px;
+  font-size: 10px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  padding: 4px;
+  padding-bottom: 7px;
+  cursor: pointer;
+  color: black;
+  padding:  0.5em;
+  transition-duration: 0.4s;
+}
+/*
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background-image:url('https://cdn.photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg');
+  background-size:cover;
+  background-repeat:no-repeat;
+} */
+
+.p-topic{
+  color: black;
+  background-color: white;
+  border-radius: 3%;
+  width: 5em;
+  padding:  0.5em;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.p-topic:hover{
+  color: white;
+  background-color: black;
+}
+
+
+.button{
+  background-color: #0000003b;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  padding: 4px;
+  padding-bottom: 7px;
+  cursor: pointer;
+}
+/* Bottom Card Section */
+
+.property-description
+{
+  background-color: #FAFAFC;
+  /*height:12em;
+  width:14em; */
+  position: absolute;
+  bottom: 0em;
+  -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0.5em 1em;
+  text-align: center;
+}
+
+.property-description.piechart-block
+{
+  bottom: 0em;
+  text-align: -webkit-left;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 7;
+}
+
+.property-description.topic
+{
+  height: 95%;
+  width: 100%;
+  bottom: 0em;
+  padding: 1rem;
+  grid-area: 2 / 2 / span 2 / span 5;
+  text-align: center;
+}
+
+.property-description.form
+{
+  height: 100%;
+  width: 100%;
+  bottom: 0em;
+  grid-area: 4 / 4/ span 3 / span 3;
+}
+
+.property-description.display{
+  height: auto;
+  width: 100%;
+  bottom: 0em;
+  padding: 1em;
+  grid-column-start: 2;
+  grid-column-end: 7;
+  grid-row-start: 3;
+  grid-row-end: 7;
+}
+
+.p-2
+{
+  padding: -14.5rem!important;
+}
+
+
+
+.btn-form{
+  margin-left: 11px;
+  float: right;
+  align-self: flex-end;
+  position: absolute;
+  right: 0.1em;
+  bottom: 0.1rem;
+}
+
+.btn-style {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.btn-style:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #000;
+}
+
+
+
+.asteriskField {
+    display: none;
+}
+
+/*
+.property-description.open
+{
+  background-color: #000000;
+}
+*/
+/* Social Icons */
+
+.property-social-icons
+{
+  grid-area: 1 / 6 / span 1 / span 1;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-bottom: 2px solid #000;
+  position:absolute;
+  margin-right: 8em;
+  bottom: 1em;
+
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Property Cards Hover States */
+
+/*.property-card:hover .property-description */
+.property-description.open
+{
+  height:0em;
+  padding:0px 1em;
+}
+/*.property-card:hover .property-image */
+.property-description.open
+{
+  height:18em;
+}
+
+/*.property-card:hover .property-social-icons */
+.property-description.open
+{
+  background-color:white;
+}
+
+/*.property-card:hover .property-social-icons:hover */
+.property-description.open
+{
+  background-color:blue;
+  cursor:pointer;
+}
+
+.form-est-field{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.form-body{
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 6;
+}
+
+
+.qd-text{
+  margin: 10px;
+
+}
+
+.qd-btn{
+  text-align: center;
+
+}
+
+.qd-text.question{
+
+}
+
+.icons-btm{
+  width: 30px;
+  height: 30px;
+
+}
+
+.track{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.track .tooltiptext {
+  visibility: hidden;
+  width: 77px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 27%;
+  margin-left: -28px;
+}
+
+.track:hover .tooltiptext {
+  visibility: visible;
+}
+
+.track .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+
+.share{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.share .tooltiptext {
+  visibility: hidden;
+  width: 77px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 27%;
+  margin-left: -28px;
+  }
+
+.share:hover .tooltiptext {
+  visibility: visible;
+}
+
+.share .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.qlink{
+  visibility: hidden;
+}
+
+.report{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.report .tooltiptext {
+  visibility: hidden;
+  width: 77px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 27%;
+  margin-left: -28px;
+}
+
+.report:hover .tooltiptext {
+  visibility: visible;
+}
+
+.report .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.sidebar-heading
+{
+  font-size: 14px;
+  margin: 20px 7px;
+  padding: 1px;
+}
+
+.list-group-item
+{
+  width: 22rem;
+}
+
+.form-style {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -ms-flex-align: center;
+    align-items: flex-start;
+    height: 100%;
+    position: absolute;
+    top: -2rem;
+}
+
+.form .tooltiptext {
+  visibility: hidden;
+  width: 77px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 27%;
+  margin-left: -28px;
+}
+
+.form:hover .tooltiptext {
+  visibility: visible;
+}
+
+.form .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+
+.est-heading {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    grid-area: 1/2/1/7;
+    border-bottom: 1.5px solid black;
+    padding: 3px;
+    margin-top: 1px;
+}
+
+.forum-form-copy{
+  font-size: 16px
+}
+
+
+.register-form
+{
+  padding: 1px;
+  margin: 24px 28px 2px 2px;
+  position: relative;
+}
+
+
+.score-explained
+{
+  font-size: 14px;
+}
+
+
+
+.property-detail
+{
+  grid-area: 5/2/2/7;
+  position: absolute;
+  float:  left;
+}
+
+.prediction
+{
+  grid-area: 2/2/3/6;
+  padding: 3px;
+  margin: 3px;
+  align-self: center;
+}
+
+.text-center
+{
+  text-align: center!important;
+  grid-area: 3/2/7/7;
+  border: 1px solid gray;
+}
+/* this was commented out to begin with
+.property-image-title
+{
+text-align:center;
+position:Relative;
+top:30%;
+opacity:0;
+transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+color:black;
+font-size:1.2em;
+}
+
+.property-card:hover .property-image-title
+{
+opacity:1;
+}
+*/
+
+/*
+/* Property Cards Hover States
+
+
+.property-description.open
+{
+  height:0em;
+  padding:0px 1em;
+}
+
+.property-property-image.open
+{
+  height:18em;
+}
+
+
+.property-social-icons.open
+{
+  background-color:white;
+}
+
+
+.property-social-icons.open .property-social-icons:hover
+{
+  background-color:blue;
+  cursor:pointer;
+}
+*/
+r;
+}
+*/

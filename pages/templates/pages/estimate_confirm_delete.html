@@ -1,0 +1,11 @@
+{% extends 'pages/base.html' %}
+{% block body %}
+
+
+<form method='POST'>
+    {% csrf_token %}
+  <div>Are you sure you want to delete this post?</div>
+  <input type="submit" name="delete_btn" value="Yes, Delete">
+  <div><a href='{% url "pages:estimate-detail" object.id %}'>Cancel</a></div
+</form>
+{% endblock %}

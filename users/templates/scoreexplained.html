@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% load static %}
+<h1 class="register-form"> What does the score mean? <h1>
+  <br>
+  <p class="score-explained"> The lower the score the better!<br /> </p>
+  <p class="score-explained"> The scoring system is called the <a href="https://en.wikipedia.org/wiki/Brier_score"><u>brier score</u></a><br /> </p>
+  <p class="score-explained"> When you predict you make an estimate of the probability of an event that is between 0 - 100%<br />
+    when an event happens, the probability of that event happening is now 100%. Conversely, 0% if it did not happen.<br />
+
+<br><br>
+    The Brier score is equal to the difference between your estimate and its real probability squared.<br />
+
+    So if you estimate there to be a 70% chance of X happening and it does happen:<br />
+    <br>
+      &nbsp;&nbsp; Score = ( real probability - your estimate )^2<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          (100% - 70%)^2<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	         (0.30)^2<br />
+      &nbsp;&nbsp; Score =   0.09<br />
+</p>
+
+{% endblock %}

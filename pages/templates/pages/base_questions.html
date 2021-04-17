@@ -1,0 +1,252 @@
+{% block body %}
+{% load crispy_forms_tags %}
+
+
+
+{% for obj in object_list %}
+<div class="center">
+
+  <div class="property-card gridder" id="property-card">
+      <!--<div class="property-image">-->
+
+        <div class="property-image property-image-title">
+          <a href="{% url 'pages:forum' obj.topic %}">
+            <h5 class="p-forum button">p/{{ obj.topic }}</h5>
+          </a>
+        </div>
+
+        <div class="property-image property-author">
+          <span class="mid-title">
+            <a href="{% url 'pages:forum' obj.topic %}">
+              <img class="rounded-circle account-img" style="width: 25px; margin-bottom:4px; border: 2px solid #000;" src="{{ obj.question.author.profile.image.url }}">
+              <h5 class="q-auth-text">{{ obj.question.author }} • {{ obj.question.author.profile.score }}</h5>
+            </a>
+          </span>
+
+        </div>
+
+        <div class="property-image property-social-icons d-flex flex-row-reverse">
+
+          <div class="p-2 report">
+            <div class="tooltiptext">Report</div>
+            <img id="{{obj.question.id}}-report-icon" src="https://img.icons8.com/material-rounded/26/000000/high-importance.png" class="icons-btm">
+          </div>
+
+            <div class="p-2 share">
+              <input type="hidden" value="{% url 'pages:question-detail' obj.topic obj.question.id obj.question.slug %}" id="{{obj.question.id}}-share-text">
+            <div  class="tooltiptext">Share</div>
+            <img src="https://img.icons8.com/material-rounded/24/000000/quote-right.png" id="{{obj.question.id}}-share-icon" class="icons-btm">
+          </div>
+            <!--  <script>
+                document.getElementById("{{ obj.question.id}}-share-icon").onclick = function() {copyShareLink()};
+
+                function copyShareLink (){
+                  var idNum = ;
+                  var copyText = document.getElementById(idNum + "-share-text");
+                  var text = copyText.value;
+                  console.log('this id ' + "-share-text");
+                  console.log('this idNum ' + idNum);
+                  console.log('this text ' + text);
+                  textToClipboard (text);
+                }
+
+                function textToClipboard (text) {
+                  console.log('hello lhohihi')
+                  var dummy = document.createElement("textarea");
+                  document.body.appendChild(dummy);
+                  console.log('text: ' + text);
+                  dummy.value = text;
+                  dummy.select();
+                  document.execCommand("copy");
+                  document.body.removeChild(dummy);
+                }
+
+              </script> -->
+                {% if obj.predictors %}
+            <div class="p-2 track">
+              <div class="tooltiptext">Tracked!</div>
+              <img id="{{obj.question.id}}-track-icon" src="https://img.icons8.com/ios-filled/50/000000/bear-footprint.png" class="icons-btm">
+            </div>
+            {% endif %}
+
+        </div>
+      <!-- </div> -->
+
+
+    <div class="property-description topic">
+      <h5 class="card-title">{{ obj.question }}</h5>
+      <p class="card-text"></p>
+    </div>
+
+
+    <div class="property-description piechart-block" id="piechart-controls-{{obj.form.prefix}}">
+        <canvas id="piechart-{{obj.form.prefix}}" width="200" height="200">Your browser is too old!</canvas>
+        <br>
+        <table id="proportions-table-{{obj.form.prefix}}"></table>
+    </div>
+
+     <div class="property-description form">
+       <form class="form-style"  method ="POST">
+         {% csrf_token %}
+         {{ obj.form|crispy }}
+     <button type="submit" class="btn btn-form btn-style ml-16 mb-2 w-15" id="{{obj.form.prefix}}showMore" name='submit-question-id' value='{{obj.topic}},{{obj.question.id}}'>Predict!</button>
+       </form>
+     </div>
+  </div>
+</div>
+
+{% endfor %}
+
+
+<script> // type="text/javascript">
+
+      (function(){
+          //IE9+ http://youmightnotneedjquery.com/
+          function ready(fn) {
+              if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+                  fn();
+              } else {
+                  document.addEventListener('DOMContentLoaded', fn);
+              }
+          }
+
+
+          var addShare = (function () {
+              var counter = 0;
+              var shareList = [];
+
+              return function () {
+                var share = function () {
+                  document.addEventListener('copy', function(e) {
+                  e.clipboardData.setData('text/plain', 'Hello, world!');
+                  e.preventDefault();
+                  });
+
+                  var copyText = document.getElementById(counter + "-share-icon");
+                  copyText.select();
+                  copyText.setSelectionRange(0, 99999);
+                  document.execCommand("copy");
+                  alert("Copied the text: " + copyText.value);
+                }
+
+                  shareList[counter] = share;
+                  counter++ ;
+                  return shareList;}
+            })();
+
+            function totalShares (total){
+                  for(var i = 0; i<total-1; i++){
+                    addShare();
+                    }
+                  return addShare();
+                  }
+
+
+
+          ready(setupPieChart);
+
+          function setupPieChart() {
+
+              var dimensions = ['yes', 'no'];
+              var colors = ["#aa8dd8" , "#977dbf"];
+              var randomProportions = [0.501, 0.499];
+              var proportions = dimensions.map(function(d,i) { return {
+                  label: d,
+                  proportion: randomProportions[i],
+                  collapsed: false,
+                  format: {
+                      color: colors[i],
+                      label: d.charAt(0).toUpperCase() + d.slice(1) // capitalise first letter
+                  }
+              }});
+
+
+            var add = (function () {
+                var counter = 0;
+                var setupList = [];
+
+                return function () {
+                  var setup = {
+                        canvas: document.getElementById('piechart-form-' + counter),
+                        radius: 0.9,
+                        collapsing: true,
+                        proportions: proportions,
+                        drawSegment: drawSegmentOutlineOnly,
+                        onchange: onPieChartChange,
+                        counterNum: counter
+                    };
+
+                    setupList[counter] = new DraggablePiechart(setup)
+                    counter++ ;
+                    return setupList;}
+              })();
+
+            function totalSetup (total){
+                  for(var i = 0; i<total-1; i++){
+                    add();
+                    }
+                  return add();
+                  }
+
+              var listViewLength = {{ object_list|length }};
+
+              var list = totalSetup(listViewLength);
+                console.log('list' + list);
+
+
+
+              function drawSegmentOutlineOnly(context, piechart, centerX, centerY, radius, startingAngle, arcSize, format, collapsed) {
+
+                  if (collapsed) { return; }
+
+                  // Draw segment
+                  context.save();
+                  var endingAngle = startingAngle + arcSize;
+                  context.beginPath();
+                  context.moveTo(centerX, centerY);
+                  context.arc(centerX, centerY, radius, startingAngle, endingAngle, false);
+                  context.closePath();
+
+
+                  context.fillStyle = format.color;
+                  context.fill();
+                  context.stroke();
+                  context.restore();
+
+                  // Draw label on top
+                  context.save();
+                  context.translate(centerX, centerY);
+                  context.rotate(startingAngle);
+
+                  var fontSize = Math.floor(context.canvas.height / 25);
+                  var dx = radius - fontSize;
+                  var dy = centerY / 10;
+                  //var textx =
+                  var texty = centerY;
+
+                  context.textAlign = "right";
+                  context.font = fontSize + "pt Helvetica";
+                  var p = Math.round(100 * arcSize / (Math.PI * 2))
+                  context.fillText(format.label + " " + p + "%", dx, dy);
+                  context.restore();
+
+              }
+
+              function onPieChartChange(piechart) {
+                  var cardNum = piechart.counterNum;
+                  var tableId = 'proportions-table-form-' + cardNum;
+                  console.log('counterNum: ' + cardNum);
+                  var table = document.getElementById(tableId);
+                  var percentages = piechart.getAllSliceSizePercentages();
+
+                  var adjust = document.getElementsByClassName("adjust-button-" + cardNum);
+                  var form = document.getElementsByName("form-" + cardNum + "-estimate");
+
+                  form[0].value = percentages[0].toFixed(0);
+
+              }
+          }
+      })();
+
+</script>
+{% endblock %}

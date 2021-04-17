@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div> What was the outcome of the question?</div>
+<div>{{ object }}</div>
+<div class="potato">
+<form method="POST">
+  {% csrf_token %}
+  {{form}}
+  <input type='submit' value='Update'>
+</form>
+</div>
+{% endblock %}

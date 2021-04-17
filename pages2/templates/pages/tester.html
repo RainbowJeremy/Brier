@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<centre>
+<div class="form-group" id="homeQuestionTextArea">
+  <label for="questionTextarea">Ask a Question about a Future Event:</label>
+  <textarea class="form-control" id="questionTextarea" rows="3" placeholder="Ask a falsifiable question..."></textarea>
+</div>
+
+<form class="" action="index.html" method="post">
+  {% csrf_token %}
+  {{ e_form }}
+  <a href='{% url "pages:question-detail" obj.q.id %}'>
+    <button type="submit" name='{{ obj.q.id }}'>Submit Estimate</button>
+  </a>
+  </form>
+
+  <form class="" action="index.html" method="post">
+    {% csrf_token %}
+    {{ q_form }}
+    <a href='{% url "pages:question-detail" obj.q.id %}'>
+      <button type="submit" name='{{ obj.q.id }}'>Submit Estimate</button>
+    </a>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

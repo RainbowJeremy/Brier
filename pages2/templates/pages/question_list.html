@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="card row shadow-sm m-2 text-center" style="width: 95%;">
+  <div class="card-body d-flex flex-row" >
+      <img class="rounded-circle account-img mt-3" style="width: 50px; height:50px; " src="{{ topic.image.url }}">
+    <div class="form-group ml-5 mb-0" id="homeQuestionTextArea" style="width: 82%;">
+      <label for="questionTextarea">Ask a Question about a Future Event:</label>
+      <textarea class="form-control" id="questionTextarea" rows="1" placeholder="Ask a falsifiable question..."></textarea>
+    </div>
+  </div>
+</div>
+
+
+
+</script>
+
+{% block q_list %}
+  {% include 'base_questions.html' %}
+{% endblock %}
+
+
+
+<script type="text/javascript">
+ document.getElementById("homeQuestionTextArea").onclick = function () {
+     location.href = "{% url 'pages:question-create-forum' topic %}";
+ };
+</script>
+
+</div>
+
+
+<div class="col-md-4">
+<div class="content-section">
+<h4><a href="{% url 'pages:forum' topic %}"> p/{{ topic }}</a></h4>
+<h7>Created by {{ topic.author }}</h7>
+<p class='text-muted'>{{ topic.description }}</p>
+
+{% endblock %}

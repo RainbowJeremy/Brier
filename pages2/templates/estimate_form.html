@@ -1,0 +1,16 @@
+{% extends 'pages/base.html'%}
+
+{% block body %}
+<div> Estimate Post </div>
+
+<div class="potato">
+<form method="POST">
+  {% csrf_token %}
+  {{form}}
+  <input type='submit' value='Post'>
+</form>
+</div>
+
+<div>Give a Guess</div>
+
+{% endblock %}

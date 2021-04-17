@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+<div class="center">
+
+  <div class="property-card question-page gridder" id="property-card">
+
+        <div class="property-image property-image-title">
+          <a href="{% url 'pages:forum' object.forum %}">
+            <h5 class="p-forum button">p/{{ object.forum }}</h5>
+          </a>
+        </div>
+
+        <div class="property-image property-author">
+          <span class="mid-title">
+            <a href="{% url 'pages:forum' object.forum %}">
+              <img class="rounded-circle account-img" style="width: 25px; margin-bottom:4px; border: 2px solid #000;" src="{{ object.author.profile.image.url }}">
+              <h5 class="q-auth-text">{{ object.author }} • {{ object.author.profile.score }} • {{ object.date }}</h5>
+            </a>
+          </span>
+
+        </div>
+
+        <div class="property-image property-social-icons d-flex flex-row-reverse">
+
+          <div class="p-2 report">
+            <div class="tooltiptext">Report</div>
+            <img id="{{object.id}}-report-icon" src="https://img.icons8.com/material-rounded/26/000000/high-importance.png" class="icons-btm">
+          </div>
+
+            <div class="p-2 share">
+              <input type="hidden" value="{% url 'pages:question-detail' object.forum object.id object.slug %}" id="{{object.id}}-share-text">
+            <div  class="tooltiptext">Share</div>
+            <img src="https://img.icons8.com/material-rounded/24/000000/quote-right.png" id="{{object.id}}-share-icon" class="icons-btm">
+          </div>
+
+
+        </div>
+      <!-- </div> -->
+
+
+    <div class="property-description property-detail forum">
+      <h5 class="card-title">{{ object }}</h5>
+      <h5 class="card-title">Prediction: {{ object.prediction }}% chance of happening</h5>
+
+      <form>
+        {% if user.is_authenticated and user == object.author %}
+          <button class="btn btn-light qd-btn" type="submit"><a href="{% url 'pages:question-update' object.id %}">Update Question</a></button>
+          <button class="btn btn-light qd-btn" type="submit"><a href="{% url 'pages:question-delete' object.id %}">Delete this post</a></button>
+        {% endif %}
+          <button class="btn btn-light qd-btn" type="submit"><a href="{% url 'pages:forum' object.forum %}">Back to Forum</a></button>
+      </form>
+    </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+{% for estimate in estimate_set %}
+
+<div class="property-card gridder row shadow-sm m-2" style="width: 41rem;">
+  <!--<div class="card-body ">-->
+    <div class="est-heading">
+      <img class="rounded-circle account-img" style="width: 3em; height: 3em;" src="{{ estimate.author.profile.image.url }}">
+      <div class="media-body ml-4">
+        <h3 class="account-heading text-left mb-1">{{ estimate.author }}</h3>
+        <p class="text-secondary text-left">Score: {{ estimate.author.profile.score }}</p>
+      </div>
+    </div>
+
+<div class="prediction"><h5>Prediction: {{ estimate.estimate }}</h5></div>
+
+<div class="text-center">
+    <p class="card-text">{{ estimate.date }}</p>
+
+    <p class="card-text text-left ml-3">{{ estimate.body }}</p>
+
+  </div>
+  </div>
+<!--</div>-->
+
+{% endfor %}
+
+{% endblock %}
