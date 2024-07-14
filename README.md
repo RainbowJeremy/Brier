@@ -38,4 +38,3 @@ The problem with journalism today is that it is biased and promulgates a certain
 
 The predictors with the best scores we assume have the required knowledge and insights of the world to accurately explain why things will happen and why the world is the way it is and what are the key trends to look out for in the future.
 
-The Application: Our webapp routinely propos
